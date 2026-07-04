@@ -442,16 +442,11 @@ npm run dev
 
 # 📸 Screenshots
 
-Include screenshots of
+### Features Overview
+![CloakBox Features](screenshots/features.png)
 
-- Landing Page
-- Dashboard
-- Upload Interface
-- AI Security Summary
-- Folder Management
-- File Details
-- Theme Toggle
-- Grid/List View
+### Landing Page & Security
+![CloakBox Landing](screenshots/landing.png)
 
 ---
 
