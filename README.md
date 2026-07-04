@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="client/public/logo.png" alt="CloakBox Logo" width="200" />
+</p>
+
 # 🛡️CloakBox
 
 ### AI-Powered Secure File Sharing Platform with Malware Detection, Intelligent Security Insights, and Privacy-First Architecture
