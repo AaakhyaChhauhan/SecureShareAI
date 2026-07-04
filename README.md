@@ -1,113 +1,514 @@
-# SecureShare AI
+# 🛡️ SecureShare AI
 
-**The modern, AI-powered secure file sharing and threat analysis workspace.**
+### AI-Powered Secure File Sharing Platform with Malware Detection, Intelligent Security Insights, and Privacy-First Architecture
 
-SecureShare AI is a self-hosted, full-stack web application designed to bundle secure file sharing, automated malware scanning, and AI-driven security analysis into one cohesive platform. Upload files with confidence, organize them effectively, and share them securely—all while getting instant security verdicts.
-
-**AI-Driven • Privacy-First • Auto-Scanning • Local Storage • Password Protected**
-
----
-
-## 🆕 What's New in v1.2
-
-### 🎨 Client UI Enhancements
-A beautiful, modern glassmorphism interface that adapts to your workflow.
-- **Dark / Light Mode**: A persistent theme toggle right in the navigation bar.
-- **Grid / List Views**: Switch instantly between a dense data table and a visual card grid on your dashboard.
-
-### 📁 Advanced File Organization
-Move beyond a flat list of files with robust organization tools.
-- **Folders**: Create custom directories and easily move your uploaded files into them for logical grouping.
-- **Tags**: Attach custom text tags to files. Tags appear as visual badges to help you sort and identify files at a glance.
-
-### ✉️ Download Notifications
-Never wonder if someone received your file.
-- **Email Alerts**: Enable notifications on a per-file basis to get an email immediately when someone accesses your shared file via its public link.
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
+![Node.js](https://img.shields.io/badge/Node.js-v20+-green.svg)
+![React](https://img.shields.io/badge/React-19-61DAFB.svg)
+![Express](https://img.shields.io/badge/Express.js-Backend-black.svg)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-green.svg)
+![OpenAI](https://img.shields.io/badge/OpenAI-AI-orange.svg)
 
 ---
 
-## 🛠️ The Feature Set
+# 📖 Overview
 
-SecureShare AI features a highly specialized toolkit focused on file security and secure distribution. 
+SecureShare AI is a modern full-stack cybersecurity platform that combines secure file management with AI-powered threat intelligence.
 
-### 🛡️ Threat Intelligence
-- **VirusTotal Integration** — Every file uploaded is automatically hashed and scanned against 68+ industry-standard antivirus engines.
-- **OpenAI Security Summary** — Raw scan data is sent to OpenAI to generate plain-english risk assessments, summaries, and actionable recommendations.
+Instead of simply uploading files, SecureShare AI allows users to securely organize, manage, and share documents while leveraging AI-powered security analysis, malware detection, intelligent file organization, and download tracking—all from one unified dashboard.
 
-### 🔐 Secure File Sharing
-- **Password Protection** — Lock your share links with a cryptographic password.
-- **Expiring Links** — Set share links to automatically self-destruct after 1 hour, 1 day, or 7 days.
-- **Analytics Tracking** — Monitor total downloads, unique user access, and last download timestamps for every file.
+Built for developers, cybersecurity professionals, researchers, students, and organizations that require secure document management.
+
+> **Privacy-First • AI-Driven • Secure Sharing • Modern Dashboard**
 
 ---
 
-## ⚙️ Prerequisites & Quickstart
+# 🚀 What's New
 
-### Prerequisites
-- **Node.js** v18.0.0 or higher
-- **MongoDB** (Local instance or MongoDB Atlas)
-- **VirusTotal API Key** (Free tier is supported)
-- **OpenAI API Key**
+## 📂 Folder Management
 
-### 💻 Manual CLI Startup (Any OS)
+Organize uploaded files using dedicated folders.
 
-**1. Clone the repository**
+- Create folders
+- Organize uploaded files
+- Improved workspace management
+
+---
+
+## 🏷 Smart Tagging
+
+Categorize files using custom tags.
+
+- Add multiple tags
+- Filter files
+- Better organization
+
+---
+
+## 📧 Download Email Notifications
+
+Receive email notifications whenever someone downloads your shared files.
+
+Features include:
+
+- Download alerts
+- Notification preferences
+- Nodemailer integration
+
+---
+
+## 🌙 Theme Toggle
+
+Switch between
+
+- Light Mode
+- Dark Mode
+
+User preferences are automatically remembered.
+
+---
+
+## 🗂 Grid & List View
+
+View uploaded files in
+
+- Grid Layout
+- List Layout
+
+Choose whichever layout best fits your workflow.
+
+---
+
+# ✨ Core Features
+
+## 🔐 Authentication
+
+- JWT Authentication
+- Secure Password Hashing (bcrypt)
+- Protected API Routes
+- Session Management
+- User Profile Settings
+
+---
+
+## 📂 Secure File Upload
+
+Upload and securely manage
+
+- PDF
+- DOCX
+- Images
+- ZIP Files
+
+with backend validation.
+
+---
+
+## 🦠 Malware Detection
+
+Uploaded files can be scanned using the VirusTotal API.
+
+Features
+
+- Malware Detection
+- Threat Classification
+- Risk Levels
+- Scan Reports
+
+Risk Indicators
+
+🟢 Safe
+
+🟡 Suspicious
+
+🔴 Malicious
+
+---
+
+## 🤖 AI Security Summary
+
+OpenAI automatically generates easy-to-understand security summaries.
+
+Example
+
+> This document appears safe to distribute. No known malware signatures were detected.
+
+or
+
+> Potential malicious content detected. Review the scan results before sharing.
+
+---
+
+## 🔗 Secure Sharing
+
+Generate secure sharing links with
+
+- Password Protection
+- Expiration Dates
+- Private Links
+- Download Tracking
+
+---
+
+## 📊 Dashboard
+
+Monitor
+
+- Uploaded Files
+- Shared Files
+- Downloads
+- Security Reports
+- Storage Usage
+- Recent Activity
+
+---
+
+## 📁 Folder Workspace
+
+Organize documents using
+
+- Folders
+- Categories
+- Smart Tags
+
+---
+
+# 🏗 System Architecture
+
+```
+React Frontend
+       │
+       ▼
+Express REST API
+       │
+       ▼
+MongoDB Database
+       │
+       ├───────────────┐
+       ▼               ▼
+VirusTotal API     OpenAI API
+       │               │
+       └──────┬────────┘
+              ▼
+      SecureShare AI Dashboard
+```
+
+---
+
+# 💻 Technology Stack
+
+## Frontend
+
+- React
+- Vite
+- Tailwind CSS
+- React Router
+- Framer Motion
+
+---
+
+## Backend
+
+- Node.js
+- Express.js
+- JWT
+- Multer
+- Nodemailer
+
+---
+
+## Database
+
+- MongoDB
+- Mongoose
+
+---
+
+## AI & APIs
+
+- OpenAI API
+- VirusTotal API
+
+---
+
+## Security
+
+- JWT Authentication
+- bcrypt
+- Helmet
+- CORS
+- Environment Variables
+
+---
+
+# 📁 Project Structure
+
+```
+SecureShareAI/
+
+│
+
+├── client/
+
+│ ├── public/
+
+│ ├── src/
+
+│ ├── components/
+
+│ ├── pages/
+
+│ ├── services/
+
+│ └── package.json
+
+│
+
+├── server/
+
+│ ├── config/
+
+│ ├── controllers/
+
+│ ├── middleware/
+
+│ ├── models/
+
+│ ├── routes/
+
+│ ├── services/
+
+│ ├── uploads/
+
+│ ├── utils/
+
+│ ├── package.json
+
+│ └── server.js
+
+│
+
+├── README.md
+
+└── .gitignore
+```
+
+---
+
+# 📦 Feature Modules
+
+| Module | Description |
+|---------|-------------|
+| Authentication | JWT Login & Registration |
+| Dashboard | User Analytics |
+| File Upload | Secure Document Upload |
+| Malware Scanner | VirusTotal Integration |
+| AI Summary | OpenAI Security Analysis |
+| Folder Management | Organize Files |
+| Smart Tags | File Categorization |
+| Email Notifications | Download Alerts |
+| Secure Sharing | Password Protected Links |
+| Analytics | Download Tracking |
+| Theme Toggle | Dark / Light Mode |
+| Grid/List View | Multiple File Layouts |
+
+---
+
+# 🔒 Security Features
+
+- JWT Authentication
+- Password Hashing
+- Protected API Routes
+- Secure File Validation
+- Password Protected Sharing
+- Helmet Security Headers
+- Environment Variable Protection
+- CORS Configuration
+
+---
+
+# 📊 Dashboard Features
+
+The dashboard provides
+
+- File Statistics
+- Download Analytics
+- Shared Files Overview
+- Storage Usage
+- Folder Overview
+- Recent Activity
+
+---
+
+# 🤖 AI Capabilities
+
+SecureShare AI uses OpenAI to
+
+- Explain malware scan reports
+- Generate security summaries
+- Provide risk recommendations
+- Simplify technical findings
+
+---
+
+# 📧 Email Notifications
+
+SecureShare AI currently supports
+
+- Email alerts when a shared file is downloaded
+- Notification preferences
+- Secure email delivery using Nodemailer
+
+---
+
+# 🚀 Installation
+
+## Clone Repository
+
 ```bash
 git clone https://github.com/AaakhyaChhauhan/SecureShareAI.git
+```
+
+```bash
 cd SecureShareAI
 ```
 
-**2. Setup the Backend Server**
-```bash
-cd server
-npm install
-```
-Create a `.env` file in the `server` directory:
-```env
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/secureshare
-JWT_SECRET=your_super_secret_jwt_key
-VIRUSTOTAL_API_KEY=your_virustotal_api_key
-OPENAI_API_KEY=your_openai_api_key
-CLIENT_URL=http://localhost:5173
+---
 
-# Optional: For Download Notifications
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your_email@gmail.com
-SMTP_PASS=your_app_password
-SMTP_FROM="SecureShare AI" <noreply@secureshare.ai>
-```
-Start the backend API:
-```bash
-npm run dev
-```
+## Install Frontend
 
-**3. Setup the Frontend Client**
-Open a new terminal window:
 ```bash
 cd client
 npm install
+```
+
+---
+
+## Install Backend
+
+```bash
+cd ../server
+npm install
+```
+
+---
+
+## Configure Environment Variables
+
+Create
+
+```
+server/.env
+```
+
+Example
+
+```
+MONGO_URI=
+
+JWT_SECRET=
+
+OPENAI_API_KEY=
+
+VIRUSTOTAL_API_KEY=
+
+EMAIL_USER=
+
+EMAIL_PASS=
+```
+
+---
+
+## Run Backend
+
+```bash
 npm run dev
 ```
-Open `http://localhost:5173` in your browser.
 
 ---
 
-## 📖 Developer Documentation
+## Run Frontend
 
-If you want to modify, customize, or contribute to SecureShare AI:
-- **Frontend Stack**: React 19, Vite, Tailwind CSS v4, Framer Motion, and Lucide Icons.
-- **Backend Stack**: Node.js, Express, Mongoose (MongoDB), Multer, and Nodemailer.
-- **Security Notice**: For the current MVP, files are stored locally in the `server/uploads` directory. For a production deployment, we highly recommend extending the Multer storage engine to integrate a cloud provider like AWS S3 or Cloudinary.
-
----
-
-## 💬 Community & Support
-- **GitHub Discussions**: Use the repository discussions for Q&A, feature requests, or sharing custom deployment setups.
-- **Report a Bug**: Open an issue on GitHub if you encounter problems or unexpected behavior.
+```bash
+cd client
+npm run dev
+```
 
 ---
 
-## 📄 License
-Distributed under the MIT License. See `LICENSE` for more information.
+# 📸 Screenshots
+
+Include screenshots of
+
+- Landing Page
+- Dashboard
+- Upload Interface
+- AI Security Summary
+- Folder Management
+- File Details
+- Theme Toggle
+- Grid/List View
+
+---
+
+# 🛣 Roadmap
+
+Planned Features
+
+- Google OAuth Authentication
+- Two-Factor Authentication (2FA)
+- Email notifications for shared links
+- Link expiration reminders
+- Security alert notifications
+- QR Code Sharing
+- Cloud Storage Integration (AWS S3)
+- Team Collaboration
+- Admin Dashboard
+- Audit Logs
+- Real-Time Notifications
+- File Versioning
+- Activity Timeline
+
+---
+
+# 🎯 Why SecureShare AI?
+
+Unlike traditional cloud storage platforms, SecureShare AI combines secure file sharing with cybersecurity intelligence by offering:
+
+- AI-powered security summaries
+- Malware detection
+- Secure file sharing
+- Password-protected links
+- Download analytics
+- Smart organization with folders and tags
+- Email notifications
+- Modern responsive dashboard
+
+---
+
+# 👩‍💻 Author
+
+## Aakhya Chhauhan
+
+**B.Tech Computer Science (Cyber Security)**
+
+GitHub: https://github.com/AaakhyaChhauhan
+
+---
+
+# 🤝 Contributing
+
+Contributions, feature suggestions, and bug reports are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+# 📄 License
+
+Distributed under the MIT License.
+
+See the LICENSE file for more information.
