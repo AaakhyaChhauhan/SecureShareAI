@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Upload, FileText, Shield, Share2, Download, AlertTriangle, Clock, ArrowRight, Folder, FolderPlus, ChevronRight } from 'lucide-react';
+import { Upload, FileText, Shield, Share2, Download, AlertTriangle, Clock, ArrowRight, Folder, FolderPlus, ChevronRight, LayoutGrid, List } from 'lucide-react';
 import { fileService } from '../services/fileService';
 import { folderService } from '../services/folderService';
 import { formatFileSize, formatRelativeTime, getStatusColor } from '../utils/helpers';
@@ -35,6 +35,7 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [showFolderModal, setShowFolderModal] = useState(false);
   const [newFolderName, setNewFolderName] = useState('');
+  const [viewMode, setViewMode] = useState('list');
 
   useEffect(() => {
     loadDashboard();
@@ -162,7 +163,25 @@ const Dashboard = () => {
 
       {/* Files List */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-        <h2 className="text-lg font-semibold text-white mb-4">Files {currentFolder ? `in ${currentFolder.name}` : ''}</h2>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-white">Files {currentFolder ? `in ${currentFolder.name}` : ''}</h2>
+          {files.length > 0 && (
+            <div className="flex items-center gap-1 glass p-1 rounded-lg">
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-1.5 rounded-md transition-colors ${viewMode === 'list' ? 'bg-white/10 text-cyan-400' : 'text-slate-400 hover:text-white'}`}
+              >
+                <List size={16} />
+              </button>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-1.5 rounded-md transition-colors ${viewMode === 'grid' ? 'bg-white/10 text-cyan-400' : 'text-slate-400 hover:text-white'}`}
+              >
+                <LayoutGrid size={16} />
+              </button>
+            </div>
+          )}
+        </div>
 
         {files.length === 0 ? (
           <div className="card text-center py-16">
@@ -174,6 +193,46 @@ const Dashboard = () => {
             <Link to="/upload" className="btn btn-primary inline-flex">
               <Upload size={16} /> Upload File
             </Link>
+          </div>
+        ) : viewMode === 'grid' ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {files.map((file, i) => (
+              <motion.div
+                key={file._id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 + i * 0.05 }}
+                className="card flex flex-col p-4"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-3xl">{getFileIcon(file.mimeType)}</span>
+                  <span className={`badge ${getStatusColor(file.virusStatus)}`}>{file.virusStatus}</span>
+                </div>
+                <h3 className="font-medium text-white line-clamp-1 mb-1" title={file.originalName}>{file.originalName}</h3>
+                <p className="text-xs text-slate-500 mb-3">{formatFileSize(file.fileSize)} • {formatRelativeTime(file.uploadDate)}</p>
+                
+                {file.tags && file.tags.length > 0 && (
+                  <div className="flex gap-1 flex-wrap mb-4">
+                    {file.tags.slice(0, 3).map(tag => (
+                      <span key={tag} className="text-[10px] bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-slate-300">
+                        {tag}
+                      </span>
+                    ))}
+                    {file.tags.length > 3 && (
+                      <span className="text-[10px] bg-white/5 border border-white/10 px-1.5 py-0.5 rounded text-slate-300">
+                        +{file.tags.length - 3}
+                      </span>
+                    )}
+                  </div>
+                )}
+                
+                <div className="mt-auto pt-3 border-t border-white/5 text-right">
+                  <Link to={`/files/${file._id}`} className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">
+                    View Details →
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
           </div>
         ) : (
           <div className="overflow-x-auto">

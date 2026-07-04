@@ -1,11 +1,13 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { Shield, LogOut, Upload, Menu, X } from 'lucide-react';
+import { useTheme } from '../../context/ThemeContext';
+import { Shield, LogOut, Upload, Menu, X, Sun, Moon } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const { user, logout, isAuthenticated } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -46,6 +48,9 @@ const Navbar = () => {
                   <Upload size={16} />
                   Upload
                 </Link>
+                <button onClick={toggleTheme} className="btn btn-ghost p-2 text-slate-400 hover:text-cyan-400">
+                  {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
                 <div className="w-px h-8 bg-white/10 mx-2" />
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full gradient-primary flex items-center justify-center text-white text-sm font-semibold">
@@ -59,6 +64,9 @@ const Navbar = () => {
               </>
             ) : (
               <>
+                <button onClick={toggleTheme} className="btn btn-ghost p-2 text-slate-400 hover:text-cyan-400">
+                  {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
                 <Link to="/login" className="btn btn-ghost text-sm">Login</Link>
                 <Link to="/register" className="btn btn-primary text-sm">Get Started</Link>
               </>
@@ -100,6 +108,10 @@ const Navbar = () => {
                   <Link to="/register" className="block py-2 px-3 rounded-lg gradient-primary text-white text-center" onClick={() => setMobileOpen(false)}>Get Started</Link>
                 </>
               )}
+              <hr className="border-white/10 my-2" />
+              <button onClick={toggleTheme} className="flex items-center gap-2 w-full text-left py-2 px-3 rounded-lg hover:bg-white/5 text-slate-300">
+                {theme === 'dark' ? <><Sun size={18} /> Light Mode</> : <><Moon size={18} /> Dark Mode</>}
+              </button>
             </div>
           </motion.div>
         )}
