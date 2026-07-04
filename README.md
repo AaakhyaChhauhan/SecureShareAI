@@ -1,4 +1,4 @@
-# 🛡️ SecureShare AI
+#  SecureShare AI
 
 ### AI-Powered Secure File Sharing Platform with Malware Detection, Intelligent Security Insights, and Privacy-First Architecture
 
@@ -11,7 +11,7 @@
 
 ---
 
-# 📖 Overview
+#  Overview
 
 SecureShare AI is a modern full-stack cybersecurity platform that combines secure file management with AI-powered threat intelligence.
 
@@ -23,9 +23,9 @@ Built for developers, cybersecurity professionals, researchers, students, and or
 
 ---
 
-# 🚀 What's New
+#  What's New
 
-## 📂 Folder Management
+##  Folder Management
 
 Organize uploaded files using dedicated folders.
 
@@ -35,7 +35,7 @@ Organize uploaded files using dedicated folders.
 
 ---
 
-## 🏷 Smart Tagging
+##  Smart Tagging
 
 Categorize files using custom tags.
 
@@ -45,7 +45,7 @@ Categorize files using custom tags.
 
 ---
 
-## 📧 Download Email Notifications
+##  Download Email Notifications
 
 Receive email notifications whenever someone downloads your shared files.
 
@@ -57,7 +57,7 @@ Features include:
 
 ---
 
-## 🌙 Theme Toggle
+##  Theme Toggle
 
 Switch between
 
@@ -79,9 +79,9 @@ Choose whichever layout best fits your workflow.
 
 ---
 
-# ✨ Core Features
+#  Core Features
 
-## 🔐 Authentication
+##  Authentication
 
 - JWT Authentication
 - Secure Password Hashing (bcrypt)
@@ -91,7 +91,7 @@ Choose whichever layout best fits your workflow.
 
 ---
 
-## 📂 Secure File Upload
+##  Secure File Upload
 
 Upload and securely manage
 
@@ -104,7 +104,7 @@ with backend validation.
 
 ---
 
-## 🦠 Malware Detection
+##  Malware Detection
 
 Uploaded files can be scanned using the VirusTotal API.
 
@@ -125,7 +125,7 @@ Risk Indicators
 
 ---
 
-## 🤖 AI Security Summary
+##  AI Security Summary
 
 OpenAI automatically generates easy-to-understand security summaries.
 
@@ -150,7 +150,7 @@ Generate secure sharing links with
 
 ---
 
-## 📊 Dashboard
+##  Dashboard
 
 Monitor
 
@@ -163,7 +163,7 @@ Monitor
 
 ---
 
-## 📁 Folder Workspace
+##  Folder Workspace
 
 Organize documents using
 
@@ -195,7 +195,7 @@ VirusTotal API     OpenAI API
 
 ---
 
-# 💻 Technology Stack
+# Technology Stack
 
 ## Frontend
 
@@ -314,7 +314,7 @@ SecureShareAI/
 
 ---
 
-# 🔒 Security Features
+#  Security Features
 
 - JWT Authentication
 - Password Hashing
@@ -327,7 +327,7 @@ SecureShareAI/
 
 ---
 
-# 📊 Dashboard Features
+#  Dashboard Features
 
 The dashboard provides
 
@@ -340,7 +340,7 @@ The dashboard provides
 
 ---
 
-# 🤖 AI Capabilities
+#  AI Capabilities
 
 SecureShare AI uses OpenAI to
 
@@ -351,7 +351,7 @@ SecureShare AI uses OpenAI to
 
 ---
 
-# 📧 Email Notifications
+#  Email Notifications
 
 SecureShare AI currently supports
 
@@ -361,7 +361,7 @@ SecureShare AI currently supports
 
 ---
 
-# 🚀 Installation
+#  Installation
 
 ## Clone Repository
 
@@ -471,7 +471,7 @@ Planned Features
 
 ---
 
-# 🎯 Why SecureShare AI?
+#  Why SecureShare AI?
 
 Unlike traditional cloud storage platforms, SecureShare AI combines secure file sharing with cybersecurity intelligence by offering:
 
@@ -486,7 +486,7 @@ Unlike traditional cloud storage platforms, SecureShare AI combines secure file 
 
 ---
 
-# 👩‍💻 Author
+#  Author
 
 ## Aakhya Chhauhan
 
@@ -496,7 +496,7 @@ GitHub: https://github.com/AaakhyaChhauhan
 
 ---
 
-# 🤝 Contributing
+#  Contributing
 
 Contributions, feature suggestions, and bug reports are welcome.
 
