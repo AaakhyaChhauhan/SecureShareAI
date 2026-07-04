@@ -17,8 +17,17 @@ export const fileService = {
     return data;
   },
 
-  getFiles: async (page = 1, limit = 20) => {
-    const { data } = await api.get(`/files?page=${page}&limit=${limit}`);
+  getFiles: async (page = 1, limit = 20, folderId = null) => {
+    let url = `/files?page=${page}&limit=${limit}`;
+    if (folderId !== null) {
+      url += `&folderId=${folderId}`;
+    }
+    const { data } = await api.get(url);
+    return data;
+  },
+
+  updateFile: async (id, updateData) => {
+    const { data } = await api.put(`/files/${id}`, updateData);
     return data;
   },
 

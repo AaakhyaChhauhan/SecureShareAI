@@ -9,7 +9,7 @@ const Download = require('../models/Download');
 exports.downloadFile = async (req, res, next) => {
   try {
     const { password } = req.body;
-    const file = await File.findOne({ shareLink: req.params.shareCode });
+    const file = await File.findOne({ shareLink: req.params.shareCode }).populate('ownerId', 'email');
 
     if (!file) {
       return res.status(404).json({ message: 'File not found.' });
@@ -47,6 +47,16 @@ exports.downloadFile = async (req, res, next) => {
     // Increment download count
     file.downloadCount = (file.downloadCount || 0) + 1;
     await file.save();
+
+    // Send email notification if enabled
+    if (file.notifyOnDownload && file.ownerId && file.ownerId.email) {
+      const emailService = require('../utils/emailService');
+      emailService.sendDownloadNotification(
+        file.ownerId.email,
+        file.originalName,
+        req.ip || req.connection.remoteAddress || 'unknown'
+      );
+    }
 
     // Stream file to client
     res.setHeader('Content-Disposition', `attachment; filename="${file.originalName}"`);
