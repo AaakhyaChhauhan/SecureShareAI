@@ -5,6 +5,7 @@ const {
   getFiles,
   getFileById,
   deleteFile,
+  updateFile,
   getDashboardStats,
 } = require('../controllers/fileController');
 const { getAnalytics } = require('../controllers/downloadController');
@@ -15,6 +16,7 @@ router.post('/upload', auth, upload.single('file'), uploadFile);
 router.get('/stats/dashboard', auth, getDashboardStats);
 router.get('/', auth, getFiles);
 router.get('/:id', auth, getFileById);
+router.put('/:id', auth, updateFile);
 router.delete('/:id', auth, deleteFile);
 router.get('/:id/analytics', auth, getAnalytics);
 

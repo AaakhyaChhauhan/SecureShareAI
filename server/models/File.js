@@ -55,6 +55,20 @@ const fileSchema = new mongoose.Schema({
     summary: { type: String, default: null },
     recommendation: { type: String, default: null },
   },
+  // Organization fields
+  folderId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Folder',
+    default: null,
+  },
+  tags: {
+    type: [String],
+    default: [],
+  },
+  notifyOnDownload: {
+    type: Boolean,
+    default: false,
+  },
   // Share fields
   shareLink: {
     type: String,

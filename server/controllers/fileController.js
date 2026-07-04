@@ -109,13 +109,18 @@ exports.getFiles = async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 20;
     const skip = (page - 1) * limit;
 
+    const query = { ownerId: req.user.id };
+    if (req.query.folderId !== undefined) {
+      query.folderId = req.query.folderId === 'root' ? null : req.query.folderId;
+    }
+
     const [files, total] = await Promise.all([
-      File.find({ ownerId: req.user.id })
+      File.find(query)
         .sort({ uploadDate: -1 })
         .skip(skip)
         .limit(limit)
         .lean(),
-      File.countDocuments({ ownerId: req.user.id }),
+      File.countDocuments(query),
     ]);
 
     res.json({
@@ -203,6 +208,33 @@ exports.deleteFile = async (req, res, next) => {
     await File.findByIdAndDelete(file._id);
 
     res.json({ message: 'File deleted successfully.' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Update file details (tags, folder, notification)
+// @route   PUT /api/files/:id
+exports.updateFile = async (req, res, next) => {
+  try {
+    const { tags, folderId, notifyOnDownload } = req.body;
+    
+    const updateData = {};
+    if (tags !== undefined) updateData.tags = tags;
+    if (folderId !== undefined) updateData.folderId = folderId;
+    if (notifyOnDownload !== undefined) updateData.notifyOnDownload = notifyOnDownload;
+
+    const file = await File.findOneAndUpdate(
+      { _id: req.params.id, ownerId: req.user.id },
+      updateData,
+      { new: true }
+    );
+
+    if (!file) {
+      return res.status(404).json({ message: 'File not found.' });
+    }
+
+    res.json(file);
   } catch (error) {
     next(error);
   }

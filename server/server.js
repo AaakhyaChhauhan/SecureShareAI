@@ -12,6 +12,7 @@ const authRoutes = require('./routes/authRoutes');
 const fileRoutes = require('./routes/fileRoutes');
 const shareRoutes = require('./routes/shareRoutes');
 const downloadRoutes = require('./routes/downloadRoutes');
+const folderRoutes = require('./routes/folderRoutes');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/files', fileRoutes);
 app.use('/api/share', shareRoutes);
 app.use('/api/download', downloadRoutes);
+app.use('/api/folders', folderRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
