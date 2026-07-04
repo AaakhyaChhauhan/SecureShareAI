@@ -26,10 +26,10 @@ const sendDownloadNotification = async (ownerEmail, fileName, ipAddress) => {
   const transporter = createTransporter();
   
   const mailOptions = {
-    from: process.env.SMTP_FROM || '"SecureShare AI" <noreply@secureshare.ai>',
+    from: process.env.SMTP_FROM || '"CloakBox" <noreply@cloakbox.app>',
     to: ownerEmail,
     subject: `Your file "${fileName}" was downloaded`,
-    text: `Hello,\n\nYour file "${fileName}" was recently downloaded.\nIP Address: ${ipAddress}\nTime: ${new Date().toLocaleString()}\n\nBest,\nSecureShare AI Team`,
+    text: `Hello,\n\nYour file "${fileName}" was recently downloaded.\nIP Address: ${ipAddress}\nTime: ${new Date().toLocaleString()}\n\nBest,\nCloakBox Team`,
     html: `
       <h2>File Downloaded</h2>
       <p>Hello,</p>
@@ -38,7 +38,7 @@ const sendDownloadNotification = async (ownerEmail, fileName, ipAddress) => {
         <li><strong>IP Address:</strong> ${ipAddress}</li>
         <li><strong>Time:</strong> ${new Date().toLocaleString()}</li>
       </ul>
-      <p>Best,<br>SecureShare AI Team</p>
+      <p>Best,<br>CloakBox Team</p>
     `
   };
 

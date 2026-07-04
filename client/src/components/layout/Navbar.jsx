@@ -25,10 +25,10 @@ const Navbar = () => {
           <Link to={isAuthenticated ? '/dashboard' : '/'} className="flex items-center gap-3 group">
             <img 
               src="/logo.png" 
-              alt="SecureShare AI Logo" 
+              alt="CloakBox Logo" 
               className="w-9 h-9 rounded-xl transition-transform group-hover:scale-105 shadow-[0_0_15px_rgba(6,182,212,0.2)]" 
             />
-            <span className="text-lg font-bold gradient-text">SecureShare AI</span>
+            <span className="text-lg font-bold gradient-text">CloakBox</span>
           </Link>
 
           {/* Desktop Nav */}

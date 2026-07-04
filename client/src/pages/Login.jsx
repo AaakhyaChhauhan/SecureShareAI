@@ -51,7 +51,7 @@ const Login = () => {
             <div className="gradient-primary p-2.5 rounded-xl transition-transform group-hover:scale-105">
               <Shield size={24} className="text-white" />
             </div>
-            <span className="text-xl font-bold gradient-text">SecureShare AI</span>
+            <span className="text-xl font-bold gradient-text">CloakBox</span>
           </Link>
           <h1 className="text-2xl font-bold text-white mt-4">Welcome Back</h1>
           <p className="text-slate-400 mt-1">Sign in to your account</p>

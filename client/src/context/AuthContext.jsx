@@ -15,15 +15,15 @@ export const AuthProvider = ({ children }) => {
 
   // Check for existing token on mount
   useEffect(() => {
-    const token = localStorage.getItem('secureshare_token');
-    const savedUser = localStorage.getItem('secureshare_user');
+    const token = localStorage.getItem('cloakbox_token');
+    const savedUser = localStorage.getItem('cloakbox_user');
 
     if (token && savedUser) {
       try {
         setUser(JSON.parse(savedUser));
       } catch {
-        localStorage.removeItem('secureshare_token');
-        localStorage.removeItem('secureshare_user');
+        localStorage.removeItem('cloakbox_token');
+        localStorage.removeItem('cloakbox_user');
       }
     }
     setLoading(false);
@@ -31,23 +31,23 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const data = await authService.login(email, password);
-    localStorage.setItem('secureshare_token', data.token);
-    localStorage.setItem('secureshare_user', JSON.stringify(data.user));
+    localStorage.setItem('cloakbox_token', data.token);
+    localStorage.setItem('cloakbox_user', JSON.stringify(data.user));
     setUser(data.user);
     return data;
   };
 
   const register = async (name, email, password) => {
     const data = await authService.register(name, email, password);
-    localStorage.setItem('secureshare_token', data.token);
-    localStorage.setItem('secureshare_user', JSON.stringify(data.user));
+    localStorage.setItem('cloakbox_token', data.token);
+    localStorage.setItem('cloakbox_user', JSON.stringify(data.user));
     setUser(data.user);
     return data;
   };
 
   const logout = () => {
-    localStorage.removeItem('secureshare_token');
-    localStorage.removeItem('secureshare_user');
+    localStorage.removeItem('cloakbox_token');
+    localStorage.removeItem('cloakbox_user');
     setUser(null);
   };
 

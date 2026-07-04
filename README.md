@@ -1,4 +1,4 @@
-# 🛡️Cloakbox
+# 🛡️CloakBox
 
 ### AI-Powered Secure File Sharing Platform with Malware Detection, Intelligent Security Insights, and Privacy-First Architecture
 
@@ -13,9 +13,9 @@
 
 #  Overview
 
-Cloakbox is a modern full-stack cybersecurity platform that combines secure file management with AI-powered threat intelligence.
+CloakBox is a modern full-stack cybersecurity platform that combines secure file management with AI-powered threat intelligence.
 
-Instead of simply uploading files, SecureShare AI allows users to securely organize, manage, and share documents while leveraging AI-powered security analysis, malware detection, intelligent file organization, and download tracking—all from one unified dashboard.
+Instead of simply uploading files, CloakBox allows users to securely organize, manage, and share documents while leveraging AI-powered security analysis, malware detection, intelligent file organization, and download tracking—all from one unified dashboard.
 
 Built for developers, cybersecurity professionals, researchers, students, and organizations that require secure document management.
 
@@ -370,7 +370,7 @@ git clone https://github.com/AaakhyaChhauhan/CloakBox.git
 ```
 
 ```bash
-cd SecureShareAI
+cd CloakBoxAI
 ```
 
 ---
@@ -473,7 +473,7 @@ Planned Features
 
 #  Why CloakBox ?
 
-Unlike traditional cloud storage platforms, SecureShare AI combines secure file sharing with cybersecurity intelligence by offering:
+Unlike traditional cloud storage platforms, CloakBox combines secure file sharing with cybersecurity intelligence by offering:
 
 - AI-powered security summaries
 - Malware detection

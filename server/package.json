@@ -1,7 +1,7 @@
 {
-  "name": "secureshare-ai-server",
+  "name": "cloakbox-ai-server",
   "version": "1.0.0",
-  "description": "SecureShare AI - Secure file sharing with malware scanning and AI security summaries",
+  "description": "CloakBox - Secure file sharing with malware scanning and AI security summaries",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

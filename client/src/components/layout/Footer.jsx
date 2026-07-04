@@ -9,13 +9,13 @@ const Footer = () => {
           <div className="flex items-center gap-2">
             <img 
               src="/logo.png" 
-              alt="SecureShare AI Logo" 
+              alt="CloakBox Logo" 
               className="w-6 h-6 rounded-md opacity-80 hover:opacity-100 transition-opacity" 
             />
-            <span className="text-sm font-semibold gradient-text">SecureShare AI</span>
+            <span className="text-sm font-semibold gradient-text">CloakBox</span>
           </div>
           <p className="text-sm text-slate-500">
-            © {new Date().getFullYear()} SecureShare AI. Secure file sharing powered by AI.
+            © {new Date().getFullYear()} CloakBox. Secure file sharing powered by AI.
           </p>
           <div className="flex items-center gap-3">
             <a href="#" className="text-slate-500 hover:text-slate-300 transition-colors">

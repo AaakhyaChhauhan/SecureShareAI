@@ -99,7 +99,7 @@ const SharedFile = () => {
           <div className="gradient-primary p-2 rounded-xl">
             <Shield size={20} className="text-white" />
           </div>
-          <span className="text-lg font-bold gradient-text">SecureShare AI</span>
+          <span className="text-lg font-bold gradient-text">CloakBox</span>
         </div>
       </div>
 
@@ -229,7 +229,7 @@ const SharedFile = () => {
         {/* Footer Branding */}
         <div className="text-center mt-8">
           <p className="text-xs text-slate-600">
-            Secured by <span className="gradient-text font-semibold">SecureShare AI</span>
+            Secured by <span className="gradient-text font-semibold">CloakBox</span>
           </p>
         </div>
       </motion.div>

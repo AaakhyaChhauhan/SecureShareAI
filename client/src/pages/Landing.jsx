@@ -64,7 +64,7 @@ const testimonials = [
   {
     name: 'Sarah Jenkins',
     role: 'Cybersecurity Analyst',
-    content: 'SecureShare AI has completely transformed how our team handles external document sharing. The AI insights catch things we might have missed.',
+    content: 'CloakBox has completely transformed how our team handles external document sharing. The AI insights catch things we might have missed.',
     avatar: 'S'
   },
   {
@@ -424,7 +424,7 @@ const Landing = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Loved by <span className="gradient-text">Professionals</span></h2>
-            <p className="text-slate-400">See what our users have to say about SecureShare AI.</p>
+            <p className="text-slate-400">See what our users have to say about CloakBox.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
@@ -470,7 +470,7 @@ const Landing = () => {
                 Start Securing Your Files <span className="gradient-text">Today</span>
               </h2>
               <p className="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
-                Join thousands of professionals who trust SecureShare AI to protect their data, scan for malware, and share files safely.
+                Join thousands of professionals who trust CloakBox to protect their data, scan for malware, and share files safely.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link to="/register" className="btn btn-primary text-lg px-10 py-4 rounded-xl shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:scale-105 transition-transform">
