@@ -3,9 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft, Shield, Brain, Share2, Download, Trash2, Copy, CheckCircle2,
-  AlertTriangle, Clock, FileText, Link2, Lock, Eye, Calendar, HardDrive
+  AlertTriangle, Clock, FileText, Link2, Lock, Eye, Calendar, HardDrive,
+  Folder, Tag, Bell, X, Check
 } from 'lucide-react';
 import { fileService } from '../services/fileService';
+import { folderService } from '../services/folderService';
 import { formatFileSize, formatDate, formatRelativeTime, getRiskColor, getStatusColor, copyToClipboard } from '../utils/helpers';
 import toast from 'react-hot-toast';
 
@@ -14,27 +16,74 @@ const FileDetails = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [analytics, setAnalytics] = useState(null);
+  const [folders, setFolders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showShareModal, setShowShareModal] = useState(false);
   const [shareOptions, setShareOptions] = useState({ password: '', expiresIn: '1d' });
   const [sharing, setSharing] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [updating, setUpdating] = useState(false);
+  
+  // Organization States
+  const [tags, setTags] = useState([]);
+  const [newTag, setNewTag] = useState('');
+  const [selectedFolder, setSelectedFolder] = useState('');
+  const [notifyOnDownload, setNotifyOnDownload] = useState(false);
 
   useEffect(() => {
-    loadFile();
+    loadData();
   }, [id]);
 
-  const loadFile = async () => {
+  const loadData = async () => {
     try {
-      const data = await fileService.getFileById(id);
-      setFile(data.file);
-      setAnalytics(data.analytics);
+      const [fileData, foldersData] = await Promise.all([
+        fileService.getFileById(id),
+        folderService.getFolders()
+      ]);
+      setFile(fileData.file);
+      setAnalytics(fileData.analytics);
+      setFolders(foldersData);
+      
+      // Initialize edit states
+      setTags(fileData.file.tags || []);
+      setSelectedFolder(fileData.file.folderId || '');
+      setNotifyOnDownload(fileData.file.notifyOnDownload || false);
     } catch (error) {
       toast.error('File not found');
       navigate('/dashboard');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleUpdate = async () => {
+    setUpdating(true);
+    try {
+      const updatedFile = await fileService.updateFile(file._id, {
+        tags,
+        folderId: selectedFolder || null,
+        notifyOnDownload
+      });
+      setFile(updatedFile);
+      toast.success('File settings updated');
+    } catch (error) {
+      toast.error('Failed to update file');
+    } finally {
+      setUpdating(false);
+    }
+  };
+
+  const addTag = (e) => {
+    e.preventDefault();
+    const tag = newTag.trim().toLowerCase();
+    if (tag && !tags.includes(tag)) {
+      setTags([...tags, tag]);
+    }
+    setNewTag('');
+  };
+
+  const removeTag = (tagToRemove) => {
+    setTags(tags.filter(t => t !== tagToRemove));
   };
 
   const handleShare = async () => {
@@ -44,7 +93,7 @@ const FileDetails = () => {
         password: shareOptions.password || undefined,
         expiresIn: shareOptions.expiresIn,
       });
-      await loadFile();
+      await loadData();
       toast.success('Share link created!');
       copyToClipboard(result.shareUrl);
       toast.success('Link copied to clipboard!');
@@ -65,7 +114,7 @@ const FileDetails = () => {
   const handleRemoveShare = async () => {
     try {
       await fileService.removeShareLink(file._id);
-      await loadFile();
+      await loadData();
       toast.success('Share link removed');
     } catch (error) {
       toast.error('Failed to remove share link');
@@ -101,7 +150,7 @@ const FileDetails = () => {
     : 0;
 
   return (
-    <div className="page-container max-w-4xl mx-auto">
+    <div className="page-container max-w-4xl mx-auto pb-12">
       {/* Back Button */}
       <motion.button
         initial={{ opacity: 0 }}
@@ -142,6 +191,84 @@ const FileDetails = () => {
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Settings / Organization */}
+        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="card lg:col-span-2">
+          <h2 className="font-semibold text-white mb-4 flex items-center gap-2">
+            <FileText size={18} className="text-blue-400" />
+            File Organization
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Folder Selection */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2 flex items-center gap-1">
+                <Folder size={14} /> Folder
+              </label>
+              <select
+                className="input text-sm"
+                value={selectedFolder}
+                onChange={(e) => setSelectedFolder(e.target.value)}
+              >
+                <option value="">(Root Directory)</option>
+                {folders.map(f => (
+                  <option key={f._id} value={f._id}>{f.name}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Tags */}
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-slate-300 mb-2 flex items-center gap-1">
+                <Tag size={14} /> Tags
+              </label>
+              <form onSubmit={addTag} className="flex gap-2 mb-2">
+                <input
+                  type="text"
+                  placeholder="Add a tag..."
+                  value={newTag}
+                  onChange={(e) => setNewTag(e.target.value)}
+                  className="input text-sm"
+                />
+                <button type="submit" className="btn btn-secondary px-3" disabled={!newTag.trim()}>Add</button>
+              </form>
+              <div className="flex flex-wrap gap-2">
+                {tags.map(tag => (
+                  <span key={tag} className="flex items-center gap-1 px-2 py-1 bg-white/5 border border-white/10 rounded-md text-xs text-slate-300">
+                    {tag}
+                    <button onClick={() => removeTag(tag)} className="hover:text-red-400">
+                      <X size={12} />
+                    </button>
+                  </span>
+                ))}
+                {tags.length === 0 && <span className="text-xs text-slate-500">No tags added.</span>}
+              </div>
+            </div>
+          </div>
+
+          {/* Email Notifications Toggle */}
+          <div className="mt-6 pt-6 border-t border-white/5 flex items-center justify-between">
+            <div>
+              <h4 className="font-medium text-white flex items-center gap-2">
+                <Bell size={16} className={notifyOnDownload ? "text-cyan-400" : "text-slate-400"} />
+                Email Notifications
+              </h4>
+              <p className="text-sm text-slate-400 mt-1">Receive an email whenever someone downloads this file using its share link.</p>
+            </div>
+            <button
+              onClick={() => setNotifyOnDownload(!notifyOnDownload)}
+              className={`w-12 h-6 rounded-full transition-colors relative ${notifyOnDownload ? 'bg-cyan-500' : 'bg-slate-700'}`}
+            >
+              <div className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${notifyOnDownload ? 'translate-x-6' : 'translate-x-0'}`} />
+            </button>
+          </div>
+
+          <div className="mt-6 pt-6 border-t border-white/5 flex justify-end">
+            <button onClick={handleUpdate} disabled={updating} className="btn btn-primary">
+              {updating ? 'Saving...' : 'Save Changes'}
+            </button>
+          </div>
+        </motion.div>
+
         {/* Scan Results */}
         <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="card">
           <div className="flex items-center gap-2 mb-4">
@@ -150,7 +277,6 @@ const FileDetails = () => {
           </div>
 
           <div className="flex items-center justify-center mb-6">
-            {/* Circular detection ratio */}
             <div className="relative w-32 h-32">
               <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
                 <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="8" />
@@ -301,14 +427,12 @@ const FileDetails = () => {
             </h3>
 
             <div className="space-y-4">
-              {/* Expiry */}
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">Link Expires In</label>
                 <select
                   className="input"
                   value={shareOptions.expiresIn}
                   onChange={(e) => setShareOptions({ ...shareOptions, expiresIn: e.target.value })}
-                  id="share-expiry"
                 >
                   <option value="1h">1 Hour</option>
                   <option value="1d">1 Day</option>
@@ -316,7 +440,6 @@ const FileDetails = () => {
                 </select>
               </div>
 
-              {/* Password */}
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2">
                   Password Protection <span className="text-slate-500">(optional)</span>
@@ -329,7 +452,6 @@ const FileDetails = () => {
                     placeholder="Enter password"
                     value={shareOptions.password}
                     onChange={(e) => setShareOptions({ ...shareOptions, password: e.target.value })}
-                    id="share-password"
                   />
                 </div>
               </div>
