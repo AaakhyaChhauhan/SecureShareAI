@@ -1,4 +1,4 @@
-#  SecureShare AI
+# 🛡️Cloakbox
 
 ### AI-Powered Secure File Sharing Platform with Malware Detection, Intelligent Security Insights, and Privacy-First Architecture
 
@@ -13,7 +13,7 @@
 
 #  Overview
 
-SecureShare AI is a modern full-stack cybersecurity platform that combines secure file management with AI-powered threat intelligence.
+Cloakbox is a modern full-stack cybersecurity platform that combines secure file management with AI-powered threat intelligence.
 
 Instead of simply uploading files, SecureShare AI allows users to securely organize, manage, and share documents while leveraging AI-powered security analysis, malware detection, intelligent file organization, and download tracking—all from one unified dashboard.
 
@@ -190,7 +190,7 @@ VirusTotal API     OpenAI API
        │               │
        └──────┬────────┘
               ▼
-      SecureShare AI Dashboard
+      CloakBox Dashboard
 ```
 
 ---
@@ -244,7 +244,7 @@ VirusTotal API     OpenAI API
 # 📁 Project Structure
 
 ```
-SecureShareAI/
+CloakBox/
 
 │
 
@@ -342,7 +342,7 @@ The dashboard provides
 
 #  AI Capabilities
 
-SecureShare AI uses OpenAI to
+CloakBox uses OpenAI to
 
 - Explain malware scan reports
 - Generate security summaries
@@ -353,7 +353,7 @@ SecureShare AI uses OpenAI to
 
 #  Email Notifications
 
-SecureShare AI currently supports
+CloakBox currently supports
 
 - Email alerts when a shared file is downloaded
 - Notification preferences
@@ -366,7 +366,7 @@ SecureShare AI currently supports
 ## Clone Repository
 
 ```bash
-git clone https://github.com/AaakhyaChhauhan/SecureShareAI.git
+git clone https://github.com/AaakhyaChhauhan/CloakBox.git
 ```
 
 ```bash
@@ -471,7 +471,7 @@ Planned Features
 
 ---
 
-#  Why SecureShare AI?
+#  Why CloakBox ?
 
 Unlike traditional cloud storage platforms, SecureShare AI combines secure file sharing with cybersecurity intelligence by offering:
 
