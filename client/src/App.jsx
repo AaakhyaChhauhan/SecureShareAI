@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
@@ -59,55 +60,57 @@ const AppLayout = ({ children }) => {
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <AppLayout>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<PublicRoute><Landing /></PublicRoute>} />
-            <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-            <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-            
-            {/* Shared File Route (Public but doesn't redirect if logged in) */}
-            <Route path="/share/:shareCode" element={<SharedFile />} />
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <AppLayout>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<PublicRoute><Landing /></PublicRoute>} />
+              <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+              <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+              
+              {/* Shared File Route (Public but doesn't redirect if logged in) */}
+              <Route path="/share/:shareCode" element={<SharedFile />} />
 
-            {/* Protected Routes */}
-            <Route 
-              path="/dashboard" 
-              element={<ProtectedRoute><Dashboard /></ProtectedRoute>} 
-            />
-            <Route 
-              path="/upload" 
-              element={<ProtectedRoute><Upload /></ProtectedRoute>} 
-            />
-            <Route 
-              path="/files/:id" 
-              element={<ProtectedRoute><FileDetails /></ProtectedRoute>} 
-            />
+              {/* Protected Routes */}
+              <Route 
+                path="/dashboard" 
+                element={<ProtectedRoute><Dashboard /></ProtectedRoute>} 
+              />
+              <Route 
+                path="/upload" 
+                element={<ProtectedRoute><Upload /></ProtectedRoute>} 
+              />
+              <Route 
+                path="/files/:id" 
+                element={<ProtectedRoute><FileDetails /></ProtectedRoute>} 
+              />
 
-            {/* 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AppLayout>
-      </Router>
-      <Toaster 
-        position="bottom-right"
-        toastOptions={{
-          style: {
-            background: 'rgba(15, 23, 42, 0.9)',
-            color: '#fff',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-          },
-          success: {
-            iconTheme: { primary: '#10b981', secondary: '#fff' },
-          },
-          error: {
-            iconTheme: { primary: '#ef4444', secondary: '#fff' },
-          },
-        }} 
-      />
-    </AuthProvider>
+              {/* 404 */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </AppLayout>
+        </Router>
+        <Toaster 
+          position="bottom-right"
+          toastOptions={{
+            style: {
+              background: 'rgba(15, 23, 42, 0.9)',
+              color: '#fff',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+            },
+            success: {
+              iconTheme: { primary: '#10b981', secondary: '#fff' },
+            },
+            error: {
+              iconTheme: { primary: '#ef4444', secondary: '#fff' },
+            },
+          }} 
+        />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
